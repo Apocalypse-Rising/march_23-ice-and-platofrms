@@ -280,7 +280,7 @@ public class PlayerBehaviour : MonoBehaviour
         if (onIce())
         {
             float direction = transform.localScale.x > 0 ? 1 : -1;
-            Vector2 pushForce = new Vector2(speed * direction, rb.velocity.y);
+            Vector2 pushForce = new Vector2(horizontal + speed * direction, rb.velocity.y);
             rb.AddForce(pushForce - rb.velocity, ForceMode2D.Impulse);
             rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -3, 3), rb.velocity.y);
         }
