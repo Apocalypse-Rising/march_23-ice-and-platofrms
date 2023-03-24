@@ -6527,8 +6527,8 @@ GameObject:
   - component: {fileID: 2091579348}
   - component: {fileID: 2091579352}
   - component: {fileID: 2091579351}
-  - component: {fileID: 2091579350}
   - component: {fileID: 2091579349}
+  - component: {fileID: 2091579350}
   m_Layer: 0
   m_Name: End
   m_TagString: Untagged
