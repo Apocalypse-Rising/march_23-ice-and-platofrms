@@ -138,8 +138,6 @@ public class PlayerBehaviour : MonoBehaviour
 
             }
             
-
-
             if (Input.GetKeyDown(KeyCode.X) && !hasMeleeAttacked)
             {
                 // Trigger the melee animation
