@@ -47,9 +47,12 @@ public class PlayerBehaviour : MonoBehaviour
     private ComboCount comboGet;
     private GameObject get;
     private Healthbar health;
+    private LavaRise lava;
     // Start is called before the first frame update
     void Start()
     {
+        GameObject l = GameObject.FindGameObjectWithTag("Lava");
+        lava = l.GetComponent<LavaRise>();
         rb = GetComponent<Rigidbody2D>();
         comboGet = GetComponent<ComboCount>();
         get = GameObject.FindGameObjectWithTag("HealthBar");
@@ -174,6 +177,9 @@ public class PlayerBehaviour : MonoBehaviour
             if (rb.position.y > collision.contacts[0].point.y && !isGrounded())
             {
                 comboGet.comboNum += 1;
+                int val = PlayerPrefs.GetInt("Kills");
+                PlayerPrefs.SetInt("Kills", val + 1);
+                PlayerPrefs.Save();
                 Destroy(collision.collider.gameObject);
             }
             else if (isGrounded())
@@ -256,8 +262,10 @@ public class PlayerBehaviour : MonoBehaviour
         if (knockBackTime <= 0)
         {
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+            lava.damaged = false;
         } else
         {
+            lava.damaged = true;
             float yVal = knockback;
             if (knockBackTime < 0.15)
             {
