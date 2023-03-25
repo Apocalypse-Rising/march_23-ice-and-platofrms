@@ -3016,7 +3016,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 434410733}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.82, y: 15.4, z: 0}
+  m_LocalPosition: {x: -0.88, y: 15.4, z: 0}
   m_LocalScale: {x: 5.4342775, y: 0.5381442, z: 1}
   m_Children:
   - {fileID: 1501153527}
@@ -3037,7 +3037,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  distance: 3
+  distance: 2
 --- !u!1 &456098316
 GameObject:
   m_ObjectHideFlags: 0
