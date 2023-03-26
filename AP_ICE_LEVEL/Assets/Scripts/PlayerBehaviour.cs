@@ -36,6 +36,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     Collider2D currentWall = null;
     Collider2D lastWall = null;
+    private AudioSource soundSource;  // Add this field to store the AudioSource component
 
 
     [SerializeField] private Rigidbody2D rb;
@@ -48,6 +49,7 @@ public class PlayerBehaviour : MonoBehaviour
     private GameObject get;
     private Healthbar health;
     private LavaRise lava;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -57,6 +59,8 @@ public class PlayerBehaviour : MonoBehaviour
         comboGet = GetComponent<ComboCount>();
         get = GameObject.FindGameObjectWithTag("HealthBar");
         health = get.GetComponent<Healthbar>();
+        soundSource = GetComponent<AudioSource>();
+
     }
 
   
@@ -181,6 +185,8 @@ public class PlayerBehaviour : MonoBehaviour
                 PlayerPrefs.SetInt("Kills", val + 1);
                 PlayerPrefs.Save();
                 Destroy(collision.collider.gameObject);
+                soundSource.PlayOneShot(soundSource.clip);
+
             }
             else if (isGrounded())
             {
