@@ -177,7 +177,6 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (collision.collider.tag == "Enemy")
         {
-            Debug.Log("enemy");
             if (rb.position.y > collision.contacts[0].point.y && !isGrounded())
             {
                 comboGet.comboNum += 1;

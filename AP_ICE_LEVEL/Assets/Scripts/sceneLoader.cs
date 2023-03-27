@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +10,11 @@ public class sceneLoader : MonoBehaviour
         if (sceneName.Equals("Level "))
         {
             int lev = PlayerPrefs.GetInt("Level");
+            int continueLev = PlayerPrefs.GetInt("ContinueLevel");
+            if (continueLev == lev)
+            {
+                PlayerPrefs.SetInt("ContinueLevel", continueLev + 1);
+            }
             lev += 1;
             PlayerPrefs.SetInt("Level", lev);
             PlayerPrefs.Save();
@@ -17,6 +23,19 @@ public class sceneLoader : MonoBehaviour
         {
             int lev = PlayerPrefs.GetInt("Level");
             SceneManager.LoadScene("Level " + lev.ToString());
+        }
+        else if (sceneName.Equals("Continue"))
+        {
+            int level = PlayerPrefs.GetInt("ContinueLevel");
+            SceneManager.LoadScene("Level " + level.ToString());
+        }
+        else if (sceneName.Contains("Select"))
+        {
+            int len = sceneName.Length;
+            int level = Int32.Parse( sceneName.Substring(len - 1));
+            PlayerPrefs.SetInt("Level", level);
+            PlayerPrefs.Save();
+            SceneManager.LoadScene("Level " + sceneName.Substring(len - 1));
         }
         else
         {
