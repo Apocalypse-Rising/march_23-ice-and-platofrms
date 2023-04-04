@@ -29,7 +29,7 @@ public class PlayerBehaviour : MonoBehaviour
     private float wallJumpingCounter = 0;
     private float wallJumpingDuration = 0.4f;
     private Vector2 wallJumpingPower = new Vector2(8f, 16f);
-    public  bool check = false;
+    private  bool check = false;
     private bool knockLeft = false;
     public float knockback;
     private float knockBackTime;
@@ -179,12 +179,12 @@ public class PlayerBehaviour : MonoBehaviour
         {
             if (rb.position.y > collision.contacts[0].point.y && !isGrounded())
             {
-                comboGet.comboNum += 1;
+                check = true;
                 int val = PlayerPrefs.GetInt("Kills");
                 PlayerPrefs.SetInt("Kills", val + 1);
                 PlayerPrefs.Save();
                 Destroy(collision.collider.gameObject);
-                soundSource.PlayOneShot(soundSource.clip);
+                //soundSource.PlayOneShot(soundSource.clip);
 
             }
             else if (isGrounded())
@@ -192,11 +192,13 @@ public class PlayerBehaviour : MonoBehaviour
                 if (rb.position.x < collision.GetContact(0).point.x)
                 {
                     knockLeft = true;
+                    comboGet.damaged = true;
                     health.Damage();
                     
                 } else if (rb.position.x > collision.GetContact(0).point.x)
                 {
                     knockLeft = false;
+                    comboGet.damaged = true;
                     health.Damage();
                 }
                 knockBackTime = 0.3f;
@@ -245,7 +247,7 @@ public class PlayerBehaviour : MonoBehaviour
         
         if (wallJumpingCounter < 1 && isWallSliding && Input.GetKeyDown(KeyCode.Space))
         {
-            comboGet.comboNum += 1;
+            check = true;
             wallJumpingCounter++;
             rb.velocity = new Vector2(rb.velocity.x, 16f);
             isWallSliding = false;

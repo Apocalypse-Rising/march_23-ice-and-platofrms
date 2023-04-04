@@ -11,6 +11,7 @@ public class ComboCount : MonoBehaviour
     public float currentTime;
     private int lastNum;
     private bool check;
+    public bool damaged;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +20,7 @@ public class ComboCount : MonoBehaviour
         currentTime = Time.time;
         lastNum = comboNum;
         check = true;
+        damaged = false;
     }
 
     // Update is called once per frame
@@ -28,20 +30,28 @@ public class ComboCount : MonoBehaviour
         if (bigCombo < comboNum)
         {
             PlayerPrefs.SetInt("Combo", comboNum);
-            PlayerPrefs.Save();
+            
         }
-        if ((comboNum > 0 && (currentTime - startTime) < 3 && comboNum > lastNum) || (check == true && comboNum == 1))
+        PlayerPrefs.Save();
+        if ((comboNum > 0 && (currentTime - startTime) < 3 && comboNum > lastNum) || (check && comboNum == 1))
         {
             combo.text = "Combo: " + comboNum + "x";
             startTime = Time.time;
             check = false;
         }
-        else if (comboNum > 1 && (currentTime - startTime) > 3)
+        if ((comboNum > 0 && (currentTime - startTime) > 3) || damaged)
         {
             comboNum = 0;
             combo.text = "";
             startTime = Time.time;
+            damaged = false;
         }
+        if (comboNum == 0)
+        {
+            startTime = Time.time;
+        }
+        float dif = currentTime - startTime;
+        Debug.Log(dif);
         lastNum = comboNum;
         currentTime = Time.time;
 
