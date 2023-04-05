@@ -13,6 +13,8 @@ public class PlayerBehaviour : MonoBehaviour
     private float horizontal;
     private float speed = 8f;
     public float jumpingPower = 16f;
+    public float input = 0f;
+
     private bool doublejump;
     private bool hasMeleeAttacked = false;
 
@@ -29,7 +31,7 @@ public class PlayerBehaviour : MonoBehaviour
     private float wallJumpingCounter = 0;
     private float wallJumpingDuration = 0.4f;
     private Vector2 wallJumpingPower = new Vector2(8f, 16f);
-    private  bool check = false;
+    public  bool check = false;
     private bool knockLeft = false;
     public float knockback;
     private float knockBackTime;
@@ -119,8 +121,7 @@ public class PlayerBehaviour : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) && isGrounded())
             {
                 doublejump = true;
-                rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
-            }
+                rb.velocity = new Vector2(rb.velocity.x, jumpingPower);            }
 
             if (Input.GetKeyDown(KeyCode.Space) && !isGrounded() && doublejump)
             {
@@ -177,14 +178,15 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (collision.collider.tag == "Enemy")
         {
+            Debug.Log("enemy");
             if (rb.position.y > collision.contacts[0].point.y && !isGrounded())
             {
-                check = true;
+                comboGet.comboNum += 1;
                 int val = PlayerPrefs.GetInt("Kills");
                 PlayerPrefs.SetInt("Kills", val + 1);
                 PlayerPrefs.Save();
                 Destroy(collision.collider.gameObject);
-                //soundSource.PlayOneShot(soundSource.clip);
+                soundSource.PlayOneShot(soundSource.clip);
 
             }
             else if (isGrounded())
@@ -192,13 +194,11 @@ public class PlayerBehaviour : MonoBehaviour
                 if (rb.position.x < collision.GetContact(0).point.x)
                 {
                     knockLeft = true;
-                    comboGet.damaged = true;
                     health.Damage();
                     
                 } else if (rb.position.x > collision.GetContact(0).point.x)
                 {
                     knockLeft = false;
-                    comboGet.damaged = true;
                     health.Damage();
                 }
                 knockBackTime = 0.3f;
@@ -244,19 +244,29 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void WallJump()
     {
-        
-        if (wallJumpingCounter < 1 && isWallSliding && Input.GetKeyDown(KeyCode.Space))
+        if (wallJumpingCounter < 1 && Input.GetKeyDown(KeyCode.Space))
         {
-            check = true;
-            wallJumpingCounter++;
-            rb.velocity = new Vector2(rb.velocity.x, 16f);
-            isWallSliding = false;
+
+            if (isWallSliding)
+            {
+                comboGet.comboNum += 1;
+                wallJumpingCounter++;
+                rb.velocity = new Vector2(rb.velocity.x, 16f);
+                isWallSliding = false;
+            }
+            else if (IsWalled() && !isGrounded())
+            {
+                comboGet.comboNum += 1;
+                wallJumpingCounter++;
+                rb.velocity = new Vector2(8f*-horizontal, 16f);
+            }
         }
 
-        if (isGrounded() || IsWalled() && currentWall!= lastWall){
+        if (isGrounded() || IsWalled() && currentWall != lastWall){
             wallJumpingCounter = 0;
         }
     }
+
 
     private void StopWallJumping()
     {

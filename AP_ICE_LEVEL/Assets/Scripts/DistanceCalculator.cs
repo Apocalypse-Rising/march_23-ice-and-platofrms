@@ -17,6 +17,6 @@ public class DistanceCalculator : MonoBehaviour
         distance = Mathf.Floor(distance);
         
         // Display the distance in the TextMesh
-        textMesh.text = "WATER: " + distance.ToString() + "ft AWAY";
+        textMesh.text = "Hazard: " + distance.ToString() + "ft AWAY";
     }
 }

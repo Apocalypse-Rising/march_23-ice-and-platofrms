@@ -2886,8 +2886,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a5e943c390874d5ba4cc8641c96718f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  object1: {fileID: 0}
-  object2: {fileID: 0}
+  object1: {fileID: 1802412477}
+  object2: {fileID: 1994477588}
   textMesh: {fileID: 437399762}
 --- !u!102 &437399762
 TextMesh:
@@ -12416,6 +12416,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   jumpingPower: 16
+  input: 0
   check: 0
   knockback: 8
   rb: {fileID: 1802412478}
@@ -12479,6 +12480,7 @@ MonoBehaviour:
   combo: {fileID: 1610783181}
   startTime: 0
   currentTime: 0
+  damaged: 0
 --- !u!114 &1802412486
 MonoBehaviour:
   m_ObjectHideFlags: 0

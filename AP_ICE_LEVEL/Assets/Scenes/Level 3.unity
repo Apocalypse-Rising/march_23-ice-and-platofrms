@@ -4170,7 +4170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4178,7 +4178,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 3979d16cedb854820900c6e9edefb1b2, type: 3}
     m_FontSize: 40
     m_FontStyle: 1
     m_BestFit: 0
@@ -10534,6 +10534,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   jumpingPower: 16
+  input: 0
   check: 0
   knockback: 8
   rb: {fileID: 1802412478}
@@ -10597,6 +10598,7 @@ MonoBehaviour:
   combo: {fileID: 669433589}
   startTime: 0
   currentTime: 0
+  damaged: 0
 --- !u!1 &1815505656
 GameObject:
   m_ObjectHideFlags: 0

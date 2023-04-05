@@ -2792,6 +2792,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   jumpingPower: 16
+  input: 0
   check: 0
   knockback: 0
   rb: {fileID: 1802412478}
@@ -2855,6 +2856,7 @@ MonoBehaviour:
   combo: {fileID: 376920073}
   startTime: 0
   currentTime: 0
+  damaged: 0
 --- !u!1 &1880212079
 GameObject:
   m_ObjectHideFlags: 0
@@ -3036,8 +3038,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a5e943c390874d5ba4cc8641c96718f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  object1: {fileID: 0}
-  object2: {fileID: 0}
+  object1: {fileID: 1802412477}
+  object2: {fileID: 1994477588}
   textMesh: {fileID: 1913428359}
 --- !u!102 &1913428359
 TextMesh:
@@ -3057,7 +3059,7 @@ TextMesh:
   m_FontSize: 0
   m_FontStyle: 3
   m_RichText: 1
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Font: {fileID: 12800000, guid: 3979d16cedb854820900c6e9edefb1b2, type: 3}
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
@@ -3080,7 +3082,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3979d16cedb854820900c6e9edefb1b2, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
