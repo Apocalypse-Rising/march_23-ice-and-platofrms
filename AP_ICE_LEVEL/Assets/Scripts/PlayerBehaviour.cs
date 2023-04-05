@@ -178,7 +178,6 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (collision.collider.tag == "Enemy")
         {
-            Debug.Log("enemy");
             if (rb.position.y > collision.contacts[0].point.y && !isGrounded())
             {
                 comboGet.comboNum += 1;
@@ -194,11 +193,13 @@ public class PlayerBehaviour : MonoBehaviour
                 if (rb.position.x < collision.GetContact(0).point.x)
                 {
                     knockLeft = true;
+                    comboGet.damaged = true;
                     health.Damage();
                     
                 } else if (rb.position.x > collision.GetContact(0).point.x)
                 {
                     knockLeft = false;
+                    comboGet.damaged = true;
                     health.Damage();
                 }
                 knockBackTime = 0.3f;
