@@ -9,6 +9,7 @@ TagManager:
   - HealthBar
   - Ice
   - lvlButton
+  - Ship
   layers:
   - Default
   - TransparentFX
