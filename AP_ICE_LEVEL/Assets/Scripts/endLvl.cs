@@ -21,7 +21,17 @@ public class endLvl : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision) { 
         if (collision.collider.tag == "Player")
         {
-            loader.LoadScene("endLevel");
+            if (gameObject.tag == "Ship")
+            {
+                PlayerPrefs.SetInt("canPlay6", 1);
+                PlayerPrefs.Save();
+                loader.LoadScene("Cutscene");
+            }
+            else
+            {
+                loader.LoadScene("endLevel");
+            }
+            
             PlayerPrefs.SetFloat("Time", time);
             PlayerPrefs.Save();
         }

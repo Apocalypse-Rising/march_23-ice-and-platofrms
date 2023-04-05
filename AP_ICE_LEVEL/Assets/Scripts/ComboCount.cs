@@ -50,8 +50,6 @@ public class ComboCount : MonoBehaviour
         {
             startTime = Time.time;
         }
-        float dif = currentTime - startTime;
-        Debug.Log(dif);
         lastNum = comboNum;
         currentTime = Time.time;
 
